@@ -1,3 +1,4 @@
+//Этап второй описываем actions которые импортировлаи из actionsType
 import {ADD_TICKET_STARTED, ADD_TICKET_SUCCESS, ADD_TICKET_FAILURE} from '../actions/actionsType'
 import axios from 'axios';
 

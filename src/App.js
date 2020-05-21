@@ -25,7 +25,7 @@ class App extends Component {
 //Здеь получаем state из reducer (который передан в store)
 function mapStateToProps(state) {
     return {
-        propsTickets: state.tickets
+        propsTickets: state.ticketReducer.tickets
     }
 }
 

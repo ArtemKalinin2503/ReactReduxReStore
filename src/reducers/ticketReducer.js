@@ -1,13 +1,14 @@
+//Этап третий описиваем логику actions
 import {ADD_TICKET_STARTED, ADD_TICKET_SUCCESS, ADD_TICKET_FAILURE} from '../actions/actionsType'
 
-//Основной state
+//Основной state для данного reducer
 const initialState = {
     tickets: [],
     loading: false,
     error: null
 }
 
-//Основной Reducer
+//Reducer - для tickets
 export default function ticketReducer(state = initialState, action) { //Reducer - принимает state и actions
     switch (action.type) {
         case ADD_TICKET_STARTED:
@@ -32,4 +33,3 @@ export default function ticketReducer(state = initialState, action) { //Reducer 
             return state
     }
 }
-
