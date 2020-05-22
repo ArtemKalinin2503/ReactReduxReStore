@@ -5,7 +5,7 @@ class ErrorIndicator extends Component {
     render() {
         return (
             <div className="errorIndicator__wrapper">
-                ssdsasad
+                <h3>Произошла ошибка загрузки данных..</h3>
             </div>
         );
     }

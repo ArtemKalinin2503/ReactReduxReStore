@@ -4,7 +4,7 @@ class Spinner extends Component {
     render() {
         return (
             <div className="spinner__wrapper">
-                ssdsasad
+                LOADIND.....
             </div>
         );
     }

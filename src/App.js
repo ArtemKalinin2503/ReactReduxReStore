@@ -1,39 +1,30 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import {addTickets} from './actions/index';
+import {Route, Switch} from 'react-router-dom';
+import HomePage from "./pages/HomePage/HomePage";
+import CartPage from "./pages/CartPage/CartPage";
+import HearderShop from "./components/HearderShop/HearderShop";
+import ShoppingCartTable from "./components/ShoppingCartTable/ShoppingCartTable";
 
 class App extends Component {
-
-    componentDidMount() {
-        this.props.onAddTickets(); //Вызов action который получит данные
-    }
-
     render() {
-        if (this.props.propsTickets.length) {
-            console.log(this.props.propsTickets);
-        }
-
         return (
             <div className="App">
-                <p>{}</p>
+                <HearderShop/>
+                <Switch>
+                    <Route
+                        path="/"
+                        component={HomePage}
+                        exact
+                    />
+                    <Route
+                        path="/cart"
+                        component={CartPage}
+                    />
+                </Switch>
+                <ShoppingCartTable/>
             </div>
         );
     }
-
 }
 
-//Здеь получаем state из reducer (который передан в store)
-function mapStateToProps(state) {
-    return {
-        propsTickets: state.ticketReducer.tickets
-    }
-}
-
-//Здесь получаем action
-function mapDispatchToProps(dispatch) {
-    return {
-        onAddTickets: () => dispatch(addTickets()) //Получили action addBooks и записали его в props onAddBooks
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

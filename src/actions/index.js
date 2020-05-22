@@ -7,7 +7,7 @@ const addTicketStarted = () => ({type: ADD_TICKET_STARTED})
 
 const addTicketSuccess = (payload) => ({type: ADD_TICKET_SUCCESS, payload: payload})
 
-const addTicketFailure = error => ({type: ADD_TICKET_FAILURE, payload: {error}})
+const addTicketFailure = (error) => ({type: ADD_TICKET_FAILURE, payload: {error}})
 
 //Thunk - который получает данные путем вызовов actions
 export const addTickets = () => {
