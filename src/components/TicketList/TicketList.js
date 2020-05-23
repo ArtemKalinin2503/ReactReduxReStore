@@ -9,17 +9,15 @@ import ErrorIndicator from "../error-indicator/Error-indicator";
 class TicketList extends Component {
 
     componentDidMount() {
-        this.props.onAddTickets(); //Вызов action который получит данные
+        this.props.onAddTickets(); //Вызов action (thunk) который получит данные
     }
 
-    //Функция которая проверит если данные пришли то вывести JSX
     renderTicketsItem() {
-
         //Если произошла ошибка вызываем компонет ErrorIndicator
         if(this.props.propsError) {
             return <ErrorIndicator/>
         }
-
+        //Когда данные пришли
         if (this.props.propsTickets.length) {
             return (
                 <div>
@@ -35,7 +33,6 @@ class TicketList extends Component {
                                     departData={item.depart_date}
                                     returnData={item.return_date}
                                     gate={item.gate}
-                                    onAddedToCart={() => this.props.onAddedToCart({index})} //Передадим метод как props, чтобы получить id билета
                                 />
                             </div>
                         )

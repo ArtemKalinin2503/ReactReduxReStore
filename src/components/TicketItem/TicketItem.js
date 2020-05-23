@@ -5,8 +5,9 @@ import {addTicketCart} from "../../actions";
 //Компонень с даннми о билете
 class TicketItem extends Component {
 
+    //Кнопка купить билет
     onAddedToCart = () => {
-        this.props.onAddTicketCart(this.props.id);
+        this.props.onAddTicketCart(this.props.id); //Передадим выбраный билет
     }
 
     render() {
@@ -45,6 +46,7 @@ class TicketItem extends Component {
     }
 }
 
+//Здесь импортируем actions
 function mapDispatchToProps(dispatch, payload) {
     return {
         onAddTicketCart: () => dispatch(addTicketCart(payload)) //Получили action addTicketCart и записали его в props onAddTicketCart

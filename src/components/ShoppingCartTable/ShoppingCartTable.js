@@ -52,16 +52,11 @@ class ShoppingCartTable extends Component {
 
 }
 
+//Здесь получаем данные из state
 function mapStateToProps(state) {
     return {
         propsCartItems: state.ticketReducer.cartItems
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
+export default connect(mapStateToProps)(ShoppingCartTable)
