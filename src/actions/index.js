@@ -1,13 +1,12 @@
 //Этап второй описываем actions которые импортировлаи из actionsType
-import {ADD_TICKET_STARTED, ADD_TICKET_SUCCESS, ADD_TICKET_FAILURE} from '../actions/actionsType'
+import {ADD_TICKET_STARTED, ADD_TICKET_SUCCESS, ADD_TICKET_FAILURE, ADD_TICKET_CART} from '../actions/actionsType'
 import axios from 'axios';
 
 //Здесь описываем каждый action который потом передаем в Reducer
 const addTicketStarted = () => ({type: ADD_TICKET_STARTED})
-
 const addTicketSuccess = (payload) => ({type: ADD_TICKET_SUCCESS, payload: payload})
-
 const addTicketFailure = (error) => ({type: ADD_TICKET_FAILURE, payload: {error}})
+const addTicketCart = (payload) => ({type: ADD_TICKET_CART, payload: payload})
 
 //Thunk - который получает данные путем вызовов actions
 export const addTickets = () => {
@@ -32,6 +31,7 @@ export const addTickets = () => {
 export {
     addTicketStarted,
     addTicketSuccess,
-    addTicketFailure
+    addTicketFailure,
+    addTicketCart
 }
 

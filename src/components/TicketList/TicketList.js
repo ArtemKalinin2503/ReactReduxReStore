@@ -28,12 +28,14 @@ class TicketList extends Component {
                             <div className="ticket__item">
                                 <TicketItem
                                     key={index}
+                                    id={index}
                                     price={item.value}
                                     departure={item.origin}
                                     destination={item.destination}
                                     departData={item.depart_date}
                                     returnData={item.return_date}
                                     gate={item.gate}
+                                    onAddedToCart={() => this.props.onAddedToCart({index})} //Передадим метод как props, чтобы получить id билета
                                 />
                             </div>
                         )
@@ -65,7 +67,7 @@ function mapStateToProps(state) {
 //Здесь получаем action
 function mapDispatchToProps(dispatch) {
     return {
-        onAddTickets: () => dispatch(addTickets()) //Получили action addBooks и записали его в props onAddBooks
+        onAddTickets: () => dispatch(addTickets()) //Получили action addTickets и записали его в props onAddTickets
     }
 }
 

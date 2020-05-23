@@ -1,11 +1,13 @@
 //Этап третий описиваем логику actions
-import {ADD_TICKET_STARTED, ADD_TICKET_SUCCESS, ADD_TICKET_FAILURE} from '../actions/actionsType'
+import {ADD_TICKET_STARTED, ADD_TICKET_SUCCESS, ADD_TICKET_FAILURE, ADD_TICKET_CART} from '../actions/actionsType'
 
 //Основной state для данного reducer
 const initialState = {
-    tickets: [],
+    tickets: [], //все данные по билетам
     loading: false,
-    error: null
+    error: null,
+    cartItems: [], //Билеты в корзине
+    orderTotal: 0 //Общая цена билетов в корзине
 }
 
 //Reducer - для tickets
@@ -29,6 +31,37 @@ export default function ticketReducer(state = initialState, action) { //Reducer 
                 loading: false,
                 error: action.payload.error
             };
+        case ADD_TICKET_CART:
+            const ticketSelect = action.payload; //Передадим выбранный билет
+            //Создаим новый объект и запишем в него данные о выбраном билете
+            let newItem = {
+                id: ticketSelect.id,
+                departure: ticketSelect.departure,
+                destination: ticketSelect.destination,
+                count: 0,
+                price: ticketSelect.price
+            }
+            //Фильтрация данных, чтобы не было повторяющиехся элементов массива (каждый билет с уникальным id)
+            let newArrItems = [...state.cartItems, newItem];
+            let used = {};
+            let filtered = newArrItems.filter(function(obj) {
+                return obj.id in used ? 0:(used[obj.id]=1);
+            });
+
+            //Подсчет количества выбраных билетов + цена
+            for (let i = 0; i < filtered.length; i++) {
+                if (filtered[i].id === ticketSelect.id) { //Проверка если в массиве с выбранными билетами есть id с билетом по которому кликнули купить
+                    filtered[i].count++; //Тогда увеличем количество выбраных билетов
+                    let totalPrice = filtered[i].price * filtered[i].count; //Посчитаем цену выбраных одинаковых билетов
+                    filtered[i].price = totalPrice;
+                }
+            }
+
+            return {
+                ...state,
+                cartItems: filtered
+            };
+
         default:
             return state
     }
