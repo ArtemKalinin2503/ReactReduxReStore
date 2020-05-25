@@ -3,7 +3,6 @@ import {Route, Switch} from 'react-router-dom';
 import HomePage from "./pages/HomePage/HomePage";
 import CartPage from "./pages/CartPage/CartPage";
 import HearderShop from "./components/HearderShop/HearderShop";
-import ShoppingCartTable from "./components/ShoppingCartTable/ShoppingCartTable";
 
 class App extends Component {
     render() {
@@ -21,7 +20,6 @@ class App extends Component {
                         component={CartPage}
                     />
                 </Switch>
-                <ShoppingCartTable/>
             </div>
         );
     }

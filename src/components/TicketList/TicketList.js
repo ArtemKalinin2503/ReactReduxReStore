@@ -40,7 +40,7 @@ class TicketList extends Component {
                 </div>
             )
         } else {
-            return <Spinner/> //Если данных нет покажим компонент Preloader
+            return <Spinner/> //Если данных нет покажем компонент Preloader
         }
     }
 

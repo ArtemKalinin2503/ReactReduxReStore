@@ -1,8 +1,14 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {addTicketCart, removeTicketCart} from "../../actions";
 
 //Компонент таблица с выбранными билетами
 class ShoppingCartTable extends Component {
+
+    //Удаление всех билетов в карзине
+    allRemoveTicketCart = () => {
+
+    }
 
     render() {
         return (
@@ -28,13 +34,13 @@ class ShoppingCartTable extends Component {
                                     <td>{item.count}</td>
                                     <td>{item.price} руб.</td>
                                     <td>
-                                        <button className="btn btn-outline-danger">
+                                        <button className="btn btn-outline-danger" onClick={this.allRemoveTicketCart}>
                                             <i className="fa fa-trash-o"/>
                                         </button>
-                                        <button className="btn btn-outline-success">
+                                        <button className="btn btn-outline-success" onClick={() => this.props.onIncreaseCart(this.props.propsIdSelectTicket)}>
                                             <i className="fa fa-plus-circle"/>
                                         </button>
-                                        <button className="btn btn-outline-warning">
+                                        <button className="btn btn-outline-warning" onClick={() => this.props.onDecreaseCart(this.props.propsIdSelectTicket)}>
                                             <i className="fa fa-minus-circle"/>
                                         </button>
                                     </td>
@@ -55,8 +61,15 @@ class ShoppingCartTable extends Component {
 //Здесь получаем данные из state
 function mapStateToProps(state) {
     return {
-        propsCartItems: state.ticketReducer.cartItems
+        propsCartItems: state.ticketReducer.cartItems,
+        propsIdSelectTicket: state.ticketReducer.selectTicket
     }
 }
 
-export default connect(mapStateToProps)(ShoppingCartTable)
+//Здесь импортируем actions
+const mapDispatchToProps = {
+    onIncreaseCart: addTicketCart,
+    onDecreaseCart: removeTicketCart
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable)
